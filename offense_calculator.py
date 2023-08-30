@@ -110,15 +110,14 @@ def offense_calculator(opponent_type1, opponent_type2):
     
     offense_analysis = {}
 
-    # Look up opponent types in offense_multiplier_dict
-    # and populate offense_analysis with its values
+    # Look up opponent types in offense_multiplier_dict and populate offense_analysis with its values
     offense_analysis[opponent_type1] = offense_multiplier_dict[opponent_type1]
     if opponent_type2 != "none":
         offense_analysis[opponent_type2] = offense_multiplier_dict[opponent_type2]
 
     
     # Print offense_analysis in a clean format
-    print("\nHere's the offensive analysis...")
+    print("\nHere's the offensive analysis (what types the pokemon can beat up):")
     for type in offense_analysis:
         print(f"\n{type}:")
         for type2 in offense_analysis[type]:

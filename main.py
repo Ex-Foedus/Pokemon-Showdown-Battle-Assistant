@@ -4,7 +4,8 @@ from type_input import find_types
 from offense_calculator import offense_calculator
 from defense_calculator import defense_calculator
 
-# create a function to house all the other functions
+"""This function call a function for the offensive stats and another for the defensive ones.
+Both return a list of  multipliers for each type, given respective weaknesses and resistances"""
 def main():
     # Program's name:
     battle_assistant = "べろべろ"
