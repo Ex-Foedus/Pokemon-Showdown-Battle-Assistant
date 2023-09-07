@@ -22,10 +22,13 @@ def main():
     offensive_analysis = offense_calculator(opponent_type1, opponent_type2)
     print(offensive_analysis)
 
+    # Call function to determine opponent's defensive multipliers for each type:
+    defensive_analysis = defense_calculator(opponent_type1, opponent_type2)
+    print(defensive_analysis)
+
+
     
     return
 
 
 main()
-
-
