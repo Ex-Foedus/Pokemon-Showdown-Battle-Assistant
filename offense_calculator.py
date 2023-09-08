@@ -106,7 +106,6 @@ def offense_calculator(pokemon_type1, pokemon_type2):
             1: ["normal", "fire", "water", "electric", "grass", "ice", "fighting", "poison", "ground", "flying", "psychic", "bug", "rock", "dragon", "dark", "steel", "fairy"]
         }
     }
-
     
     offense_analysis = {}
 
@@ -114,14 +113,32 @@ def offense_calculator(pokemon_type1, pokemon_type2):
     offense_analysis[pokemon_type1] = offense_multiplier_dict[pokemon_type1]
     if pokemon_type2 != "none":
         offense_analysis[pokemon_type2] = offense_multiplier_dict[pokemon_type2]
-
     
     # Print offense_analysis in a clean format
     print("\nHere's the offensive analysis (what types the pokemon can/can't beat up):")
     for type in offense_analysis:
-        print(f"\n{type}:")
+        # Create a formal format for the output e.g. "normal" -> "Normal":
+        formal_type = type[0].upper() + type[1:]
+        print(f"\n{formal_type} is ~~~")
+
         for multiplier in offense_analysis[type]:
-            print(str(multiplier) + ": " + str(offense_analysis[type][multiplier]))
+            # Create a clean format for the output
+            formatted_result = str(multiplier) + ": " + str(offense_analysis[type][multiplier])
+            
+            # Return strong matchups
+            if multiplier == 2:
+                print("Strong against:")
+                print(formatted_result)
+
+            # Return weak matchups
+            if multiplier == 0.5:
+                print("\nWeak against:")
+                print(formatted_result)
+
+            # Return matchups with no effect
+            if multiplier == 0:
+                print(f"\nWatch out! {formal_type} has no effect on the following:")
+                print(formatted_result)
         
     
     return offense_analysis
