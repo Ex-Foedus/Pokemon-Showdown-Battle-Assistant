@@ -123,22 +123,18 @@ def offense_calculator(pokemon_type1, pokemon_type2):
 
         for multiplier in offense_analysis[type]:
             # Create a clean format for the output
-            formatted_result = str(multiplier) + ": " + str(offense_analysis[type][multiplier])
+            formatted_result = str(multiplier) + "x " + "=> " + str(offense_analysis[type][multiplier])
             
             # Return strong matchups
             if multiplier == 2:
-                print("Strong against:")
-                print(formatted_result)
+                print(f"Strong against: {formatted_result}")
 
             # Return weak matchups
             if multiplier == 0.5:
-                print("\nWeak against:")
-                print(formatted_result)
+                print(f"\nWeak against: {formatted_result}")
 
             # Return matchups with no effect
             if multiplier == 0:
-                print(f"\nWatch out! {formal_type} has no effect on the following:")
-                print(formatted_result)
-        
+                print(f"\nIneffective against: {formatted_result}:")
     
-    return offense_analysis
+    return
