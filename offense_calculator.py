@@ -1,3 +1,10 @@
+"""Given the type(s) of a Pokemen, this program will answer:
+* what types can/can't the Pokemon beat up ?
+
+It prints the following information to the user:
+* Strong against: {formatted_result}
+* Weak against: {formatted_result}
+* Ineffective against: {formatted_result}"""
 def offense_calculator(pokemon_type1, pokemon_type2):
     """This function will calculate the offensive multiplier for the pokemon's type(s)"""
 

@@ -1,7 +1,11 @@
+"""Given the type(s) of a Pokemen, this program will answer:
+* what types can/can't beat it up ?
+
+It prints the following information to the user:
+todo: MAKE FMT"""
+
 def defense_calculator(pokemon_type1, pokemon_type2):
-    """This function will calculate the offensive multiplier for opponent Pokemon's type(s)"""
-    
-    # Dictionary for the defensive multipliers for each of the types:
+    # Dictionary for the final defensive multipliers based on each of the types:
     defense_multiplier_dict = {
         "normal": {
             2: ["fighting"],
@@ -100,14 +104,74 @@ def defense_calculator(pokemon_type1, pokemon_type2):
             0: ["dragon"]
         }
     }
-    
-    defense_analysis = {}
-            
-    # for multiplier in defense_analysis[opponent_type2]:
-        
-        
 
-    # print("\nHere's the defensive analysis...")
-    # print(defense_analysis)
-   
-    # print("that's the analysis!")
+    # The final result that's returned to the user will populate here
+    defense_analysis = {
+        4: [],
+        2: [],
+        1: [],
+        0.5: [],
+        0.25: [],
+        0: []
+    }
+
+    # Placeholder dictionary to help determine the final multiplier, given some type(s)
+    calc_final_multiplier_dict = {
+        # E.g. "normal": 1
+    }
+
+    # Append the first type to multiplier_dict to determine final multiplier:
+    for multiplier in defense_multiplier_dict[pokemon_type1]:
+        for defense_dict_type in defense_multiplier_dict[pokemon_type1][multiplier]:
+            calc_final_multiplier_dict[defense_dict_type] = multiplier
+    
+    # Repeat for second type && compare its multiplier to determine final one:
+    if pokemon_type2 != "none":
+        for multiplier in defense_multiplier_dict[pokemon_type2]:
+            for defense_dict_type in defense_multiplier_dict[pokemon_type2][multiplier]:
+                # Compare the multipliers and multiply them to determine the new multiplier for that type:
+                if defense_dict_type in calc_final_multiplier_dict:
+                    calc_final_multiplier_dict[defense_dict_type] *= multiplier
+    
+    # Insert data into defense_analysis in a clean format
+    for type in calc_final_multiplier_dict:
+        # Insert the type into the correct list in defense_analysis
+        defense_analysis[calc_final_multiplier_dict[type]].append(type)
+    
+    # Analysis prompts dictionary
+    analysis_prompts = {
+        4: "VERY strong against",
+        2: "strong against",
+        1: "weak against",
+        0.5: "VERY weak against",
+        0.25: "VERY weak against",
+        0: "NO EFFECT against"
+    }
+
+    # Create a formal format for the output e.g. "normal" -> "Normal":
+    formal_types = ([pokemon_type1[0].upper() + pokemon_type1[1:], pokemon_type2[0].upper() + pokemon_type2[1:]])
+    print(f"\nHere's the defensive analysis (what types are strong/weak against {formal_types}):")   
+    
+    for multiplier in defense_analysis:
+        formal_multiplier = str(multiplier) + "x"
+        if defense_analysis[multiplier] != []:
+            print(f"\nThe following types are {analysis_prompts[multiplier]} {formal_multiplier} {defense_analysis[multiplier]}:")
+    
+
+    # if defense_analysis[4] != []:
+    #     print(f"\nThe following types are VERY strong against your given type(s): {defense_analysis[4]}")
+    # if defense_analysis[2] != []:
+    #     print(f"\nThe following types are strong against your given type(s): {defense_analysis[2]}")
+    # if defense_analysis[0.5] != []:
+    #     print(f"\nThe following types are weak against your given type(s): {defense_analysis[0.5]}")
+    # if defense_analysis[0.25] != []:
+    #     print(f"\nThe following types are VERY weak against your given type(s): {defense_analysis[0.25]}")
+    # if defense_analysis[0] != []:
+    #     print(f"\nThe following types have NO EFFECT against your given type(s): {defense_analysis[0]}")
+
+    
+    
+    print(f"\nPokemon types: {formal_types[0]}, {formal_types[1]}")
+    print(f"\nHere's the defense analysis after both types were analyzed: \n{defense_analysis}")
+    
+    return
