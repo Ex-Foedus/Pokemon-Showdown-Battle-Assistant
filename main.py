@@ -22,7 +22,7 @@ def main():
                  I'll be your battle assistant!\
                  """))
 
-
+    input("\nAt any time, press CTL/CMD + C (try Z if C didn't work) to exit the program; press ENTER to continue.")
     # Determine the pokemon's type(s):
     pokemon_type1, pokemon_type2 = find_types()
 
