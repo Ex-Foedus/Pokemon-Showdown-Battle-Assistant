@@ -138,40 +138,46 @@ def defense_calculator(pokemon_type1, pokemon_type2):
         # Insert the type into the correct list in defense_analysis
         defense_analysis[calc_final_multiplier_dict[type]].append(type)
     
-    # Analysis prompts dictionary
+    # Dictionary for analysis prompts:
     analysis_prompts = {
-        4: "VERY strong against",
-        2: "strong against",
-        1: "weak against",
-        0.5: "VERY weak against",
-        0.25: "VERY weak against",
-        0: "NO EFFECT against"
+        4: "take *VERY* STRONG damage from:",
+        2: "take STRONG damage from:",
+        1: "take regular damage from:", # Shouldn't print since this isn't the default multiplier
+        0.5: "take WEAK damage from:",
+        0.25: "take *VERY* WEAK damage from:",
+        0: "take *NO* damage from:"
     }
-
-    # Create a formal format for the output e.g. "normal" -> "Normal":
+    
+    # Create a formal format for the output e.g. ["normal", "ice"]-> "Normal & Ice":
     formal_types = ([pokemon_type1[0].upper() + pokemon_type1[1:], pokemon_type2[0].upper() + pokemon_type2[1:]])
-    print(f"\nHere's the defensive analysis (what types are strong/weak against {formal_types}):")   
-    
+    formal_types = " & ".join(formal_types)
+
+    # Start printing the final result to the user:
+    print(f"\nHere's the defensive analysis (what types are strong/weak) against {formal_types}:")
+    print(f"\n{formal_types} ~~~")
+
+    # Print defense_analysis in a clean format:
     for multiplier in defense_analysis:
-        formal_multiplier = str(multiplier) + "x"
-        if defense_analysis[multiplier] != []:
-            print(f"\nThe following types are {analysis_prompts[multiplier]} {formal_multiplier} {defense_analysis[multiplier]}:")
+        formal_multiplier = str(multiplier) + "x" + " => "
+        if defense_analysis[multiplier] != [] and multiplier != 1:
+            print(f"\n{analysis_prompts[multiplier]} {formal_multiplier} {defense_analysis[multiplier]}:")
     
+    return
 
-    # if defense_analysis[4] != []:
-    #     print(f"\nThe following types are VERY strong against your given type(s): {defense_analysis[4]}")
-    # if defense_analysis[2] != []:
-    #     print(f"\nThe following types are strong against your given type(s): {defense_analysis[2]}")
-    # if defense_analysis[0.5] != []:
-    #     print(f"\nThe following types are weak against your given type(s): {defense_analysis[0.5]}")
-    # if defense_analysis[0.25] != []:
-    #     print(f"\nThe following types are VERY weak against your given type(s): {defense_analysis[0.25]}")
-    # if defense_analysis[0] != []:
-    #     print(f"\nThe following types have NO EFFECT against your given type(s): {defense_analysis[0]}")
+    formal_type = type[0].upper() + type[1:]
+    
+    # Create a formal format for printing both user-given types e.g. ["normal", "ice"]-> "Normal & Ice":
+    formal_types = ([pokemon_type1[0].upper() + pokemon_type1[1:], pokemon_type2[0].upper() + pokemon_type2[1:]])
+    non_list_of_formal_types = " & ".join(formal_types)
 
-    
-    
-    print(f"\nPokemon types: {formal_types[0]}, {formal_types[1]}")
-    print(f"\nHere's the defense analysis after both types were analyzed: \n{defense_analysis}")
+    # Start printing the final result to the user:
+    print(f"\nHere's the defensive analysis (what types are strong/weak) against {formal_types}:")
+    print(f"\n{formal_types} ~~~")
+
+    # Print defense_analysis in a clean format:
+    for multiplier in defense_analysis:
+        formal_multiplier = str(multiplier) + "x" + " => "
+        if defense_analysis[multiplier] != [] and multiplier != 1:
+            print(f"\n{analysis_prompts[multiplier]} {formal_multiplier} {defense_analysis[multiplier]}:")
     
     return
