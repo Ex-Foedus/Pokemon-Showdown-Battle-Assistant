@@ -2,7 +2,9 @@
 * what types can/can't beat it up ?
 
 It prints the following information to the user:
-todo: MAKE FMT"""
+'{formal_types} ~~~
+take STRONG damage from: 2x =>  [ list of types]
+take STRONG damage from: 2x =>  [list of types]"""
 
 def defense_calculator(pokemon_type1, pokemon_type2):
     # Dictionary for the final defensive multipliers based on each of the types:
@@ -151,24 +153,6 @@ def defense_calculator(pokemon_type1, pokemon_type2):
     # Create a formal format for the output e.g. ["normal", "ice"]-> "Normal & Ice":
     formal_types = ([pokemon_type1[0].upper() + pokemon_type1[1:], pokemon_type2[0].upper() + pokemon_type2[1:]])
     formal_types = " & ".join(formal_types)
-
-    # Start printing the final result to the user:
-    print(f"\nHere's the defensive analysis (what types are strong/weak) against {formal_types}:")
-    print(f"\n{formal_types} ~~~")
-
-    # Print defense_analysis in a clean format:
-    for multiplier in defense_analysis:
-        formal_multiplier = str(multiplier) + "x" + " => "
-        if defense_analysis[multiplier] != [] and multiplier != 1:
-            print(f"\n{analysis_prompts[multiplier]} {formal_multiplier} {defense_analysis[multiplier]}:")
-    
-    return
-
-    formal_type = type[0].upper() + type[1:]
-    
-    # Create a formal format for printing both user-given types e.g. ["normal", "ice"]-> "Normal & Ice":
-    formal_types = ([pokemon_type1[0].upper() + pokemon_type1[1:], pokemon_type2[0].upper() + pokemon_type2[1:]])
-    non_list_of_formal_types = " & ".join(formal_types)
 
     # Start printing the final result to the user:
     print(f"\nHere's the defensive analysis (what types are strong/weak) against {formal_types}:")
