@@ -2,7 +2,7 @@
 
 A simple assistant to help you strategize during a Pokemon battle
 
-![Battle-Assistant-Logo](https://user-images.githubusercontent.com/56422761/268168410-aadabcfb-3eb5-42c4-a612-379092fe813c.png)
+![Battle-Assistant-Logo](https://user-images.githubusercontent.com/56422761/268390826-51329e3f-cbb9-47bb-9e40-2bf7b1706891.png)
 
 <!-- Replit badge -->
 
