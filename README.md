@@ -5,7 +5,6 @@ A simple assistant to help you strategize during a Pokemon battle
 ![Battle-Assistant-Logo](https://user-images.githubusercontent.com/56422761/268390826-51329e3f-cbb9-47bb-9e40-2bf7b1706891.png)
 
 <!-- Replit badge -->
-
 ## [![Run on Repl.it](https://repl.it/badge/github/Lito_Frito/Pokemon-Showdown-Battle-Assistant)](https://replit.com/@Lito-Frito/Pokemon-Showdown-Battle-Assistant)
 
 This is a simple CLI app to help people who play Pokemon. I made this because I haven't played since Gen1 and I wanted a tool to help me keep track of all the new type matchups (e.g. what type is effective against or takes greater damage from some other type).
