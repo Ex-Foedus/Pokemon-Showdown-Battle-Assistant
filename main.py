@@ -27,10 +27,8 @@ def main():
     # Teach user how to exit at any time
     input("\nAt any time, press CTL/CMD + C (try Z if C didn't work) to exit the program; press ENTER to continue.")
     
-
-    # Ask user if they want to continue and update still_playing accordingly:
-    still_playing = True # will change to False if user enters "n"
-    while still_playing:
+    start_analysis = True
+    while start_analysis:
         try:                    
             # Determine the pokemon's type(s):
             pokemon_type1, pokemon_type2 = find_types()
@@ -39,21 +37,27 @@ def main():
             offensive_analysis = offense_calculator(pokemon_type1, pokemon_type2)
             defensive_analysis = defense_calculator(pokemon_type1, pokemon_type2)
 
-            # Ask the user to start another analysis
-            user_input = input("\nWould you like to continue? (y/n): ")
+            # Ask user if they want to continue and update still_playing accordingly:
+            still_playing = True # will change to False if user enters "n"
+            while still_playing:
 
-            if user_input.lower() == "y":
-                continue
+                # Ask the user to start another analysis
+                keep_going = input("\nWould you like to continue? (y/n): ")
 
-            elif user_input.lower() == "n":
-                still_playing = False
-                print("\n\nProgram finished.")
-                print("Thank you for using the Pokemon Showdown Battle Assistant, BeroBero! See you next time!")
-                break
-            
-            else:
-                print("\nPlease enter y or n.")
+                if keep_going.lower() == "y":
+                    break
+
+                elif keep_going.lower() == "n":
+                    still_playing = False
+                    print("\n\nProgram finished.")
+                    print("Thank you for using the Pokemon Showdown Battle Assistant, BeroBero! See you next time!")
+                    exit()
                 
+                else:
+                    # Tell the user what the appropriate answers are:
+                    print("\n\nPlease enter 'y' or 'n' only.")
+                    continue
+
         except KeyboardInterrupt:
             print("\n\nProgram interrupted....thank you for using the Pokemon Showdown Battle Assistant, BeroBero! See you next time!")
             exit()
@@ -62,3 +66,13 @@ def main():
 
 main()
 
+# print("\nPlease enter y or n.")
+#                 # Get the user to enter y or n:
+#                 while user_input.lower() != "y" or user_input.lower() != "n":
+#                     try_again = input("Would you like to continue? (y/n): ")
+#                     if try_again.lower() != "y" or try_again.lower() != "n":
+#                         print("\nPlease enter y or n.")
+#                         continue
+#                     else:
+#                         user_input = try_again
+#                         break
